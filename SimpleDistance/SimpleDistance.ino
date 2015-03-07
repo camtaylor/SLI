@@ -1,9 +1,5 @@
 
 
-#include <Servo.h> 
-Servo myServo;
-
-
 #define echoPin 7
 #define trigPin 8
 
@@ -15,14 +11,11 @@ long microsecondsToCentimeters(long);
 
 void setup()
 {
-  //set up servo
-  myServo.attach(10);
   // This code will only run once, after each powerup or reset of the board
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
   Serial.begin(9600);
   wait = 500;
-  myServo.write(0);
 }
 
 void loop()
@@ -41,12 +34,6 @@ void loop()
   
   delay(20);
   Serial.println(inches);
-  if(inches < 24){
-    myServo.write(180);
-  }
-  else{
-    myServo.write(0);
-  }
   delay(wait);
   
 }
