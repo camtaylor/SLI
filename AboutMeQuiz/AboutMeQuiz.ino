@@ -10,16 +10,16 @@ void setup(){
   Serial.begin(9600);
   score = 0;
   //change these to your own questions and name
-  name = "Mr. Taylor";
-  questions[0] = "Is blue my favorite color?";
-  questions[1] = "Yes or No, do I go to SJSU?";
-  questions[2] = "What is my middle name?";
-  questions[3] = "rue or False, I have lived in California my whole life?";
+  name = "Arav Chheda";
+  questions[0] = "What is my favorite color?";
+  questions[1] = "What phone do I have right now?";
+  questions[2] = "How old am I?";
+  questions[3] = "What is the name of my second period teacher?";
 
-  answers[0] = "red";
-  answers[1] = "yes";
-  answers[2] = "gregory";
-  answers[3] = "yes";
+  answers[0] = "blue";
+  answers[1] = "iphone";
+  answers[2] = "13";
+  answers[3] = "mrs. wirth";
   
   Serial.println("Hello this is " + name + "'s about me quiz.");
 }
@@ -34,6 +34,7 @@ void loop(){
   while(index < testLength){
     userAnswer = "";
     Serial.flush();
+    //print question
     Serial.println(questions[index]);
     //wait for user input
     while(!Serial.available());
@@ -41,10 +42,18 @@ void loop(){
     while(Serial.available()) {
       character = Serial.read();
       userAnswer.concat(character);
-      delay(1000);
+      delay(100);
     }
     if( userAnswer == answers[index] ){
       Serial.println("Correct!");
+      score = score + 1;
+      Serial.println("Your score is ");
+      Serial.println(score);
+    }
+    else {
+      Serial.println("You must not know me very well!");
+      Serial.println("The answer was...");
+      Serial.println(answers[index]);
     }
     index = index + 1;
   }
